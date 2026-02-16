@@ -56,10 +56,20 @@ public class LanguageModel {
 }
 
     // Returns a random character from the given probabilities list.
-	char getRandomChar(List probs) {
-		// Your code goes here
-		return ' ';
-	}
+		char getRandomChar(List probs) {
+		    double r = randomGenerator.nextDouble(); 
+		    ListIterator it = probs.listIterator(0);
+        	char last = ' '; 
+        	while (it != null && it.hasNext()) {
+            	CharData cd = it.next();
+            	last = cd.chr;
+            	if (cd.cp >= r) {          
+                	return cd.chr;
+            }
+			}
+			return last; 
+	
+		}
 
     /**
 	 * Generates a random text, based on the probabilities that were learned during training. 
